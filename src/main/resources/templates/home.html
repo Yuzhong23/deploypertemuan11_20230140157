@@ -2,29 +2,118 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Dashboard | Web3 App</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f172a;
+            background-image: radial-gradient(circle at bottom left, #1e1b4b, #0f172a);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #e2e8f0;
+        }
+        .dashboard-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        /* Efek cahaya neon di ujung card */
+        .dashboard-card::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 100px;
+            height: 100px;
+            background: #00f2fe;
+            filter: blur(50px);
+            opacity: 0.5;
+            border-radius: 50%;
+        }
+        h1 {
+            margin-top: 0;
+            font-size: 28px;
+            background: linear-gradient(to right, #10b981, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+        .label {
+            color: #94a3b8;
+            font-weight: 600;
+        }
+        .value {
+            color: #fff;
+            font-weight: bold;
+            text-align: right;
+        }
+        .btn-logout {
+            display: block;
+            text-align: center;
+            width: calc(100% - 24px);
+            padding: 12px;
+            margin-top: 30px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 10px;
+            color: #ef4444;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .btn-logout:hover {
+            background: #ef4444;
+            color: white;
+            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4);
+        }
+    </style>
 </head>
 <body>
-<h1>Home</h1>
 
-<p>
-    Username:
-    <span th:text="${user.username}"></span>
-</p>
+<div class="dashboard-card">
+    <h1>Node Dashboard</h1>
 
-<p>
-    Nama:
-    <span th:text="${profile.nama}"></span>
-</p>
+    <div class="data-row">
+        <span class="label">Username</span>
+        <span class="value" th:text="${user.username}"></span>
+    </div>
 
-<p>
-    Alamat:
-    <span th:text="${profile.alamat}"></span>
-</p>
+    <div class="data-row">
+        <span class="label">Identity Name</span>
+        <span class="value" th:text="${profile.nama}"></span>
+    </div>
 
-<a th:href="@{/logout}">
-    Logout
-</a>
+    <div class="data-row">
+        <span class="label">Location</span>
+        <span class="value" th:text="${profile.alamat}"></span>
+    </div>
+
+    <a th:href="@{/logout}" class="btn-logout">
+        Disconnect Wallet / Logout
+    </a>
+</div>
 
 </body>
 </html>
